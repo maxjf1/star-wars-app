@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Star Wars",
+  "name": "Star Wars WebAPP",
   "icons": [
     {
       "src": "icons/android-icon-36x36.png",
@@ -42,5 +42,5 @@
   "start_url": "./index.html",
   "display": "standalone",
   "theme_color": "#b71c1c",
-  "background_color": "#ffffff"
+  "background_color": "#b71c1c"
 }
