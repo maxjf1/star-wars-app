@@ -17,26 +17,29 @@ function getId(url) {
 
 const PeopleList = ({ items, loading, nextPageButton, onNextPage }) => (
     <Fragment>
-        {items.length !== 0 &&
-            <List component="nav">
-                {items.map(({ name, mass, height, url }) =>
+        {!items.length && !loading &&
+            <Fragment>
+                <Typography variant="display1" align="center">It's a trap!</Typography>
+                <Typography variant="subheading" align="center">No match found. Try to change the filter and the search terms.</Typography>
+                {nextPageButton && <Typography variant="subheading" align="center">You can also...</Typography>}
+            </Fragment>
+        }
+        <List component="nav">
+            {items.length !== 0 &&
+                items.map(({ name, mass, height, url }) =>
                     <ListItem key={getId(url)} button>
                         <Avatar>{getInitials(name)}</Avatar>
                         <ListItemText primary={name} secondary={`Weight: ${mass}, Height: ${height}CM, `} />
                     </ListItem>
-                )}
-                {nextPageButton &&
-                    <ListItem button onClick={onNextPage}>
-                        <ListItemText primary="Carregar mais..." />
-                    </ListItem>
-                }
-            </List>
-        }
+                )
+            }
+            {nextPageButton &&
+                <ListItem button onClick={onNextPage}>
+                    <ListItemText primary="Load more..." />
+                </ListItem>
+            }
+        </List>
         {loading && <Loader />}
-
-        {!items.length && !loading &&
-            <Typography variant="subheading" align="center">This search didn't return any results. Try again.</Typography>
-        }
 
     </Fragment>
 )

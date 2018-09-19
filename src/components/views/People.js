@@ -71,22 +71,32 @@ class People extends Component {
 
     toggleFilter = () => this.setState({ filterOpen: !this.state.filterOpen })
 
+    getFilteredList() {
+        const { filter, items } = this.state
+        return items.filter(
+            item => !Object.keys(filter).find(
+                filterKey => filter[filterKey] && item[filterKey] !== filter[filterKey]
+            )
+        )
+    }
+
     render() {
+        const { hasNextPage, loading, filter, filterOpen } = this.state
         return (
             <Fragment>
                 <PeopleHeader onSearch={this.handleSearch} onFilterOpen={this.toggleFilter} onNextPage={this.handleNextPage} />
                 <main>
                     <PeopleList
-                        loading={this.state.loading}
-                        items={this.state.items}
-                        nextPageButton={this.state.hasNextPage && !this.state.loading}
+                        loading={loading}
+                        items={this.getFilteredList()}
+                        nextPageButton={hasNextPage && !loading}
                         onNextPage={this.handleNextPage}
                     />
                 </main>
                 <aside>
                     <PeopleFilter
-                        filters={this.state.filter}
-                        open={this.state.filterOpen}
+                        filters={filter}
+                        open={filterOpen}
                         onChange={this.handleFilterChange}
                         onClose={this.toggleFilter} />
                 </aside>

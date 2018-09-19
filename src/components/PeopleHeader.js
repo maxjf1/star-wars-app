@@ -31,7 +31,16 @@ class PeopleHeader extends Component {
                     this.state.searchOpen &&
                     <form onSubmit={this.handleSearch}>
                         <Typography variant="title" color="inherit">
-                            <InputBase name="search" value={this.state.search} onChange={e => this.setState({ search: e.target.value })} placeholder="Search..." autoFocus style={{ fontSize: 'inherit' }} />
+                            <InputBase
+                                name="search"
+                                type="search"
+                                value={this.state.search}
+                                onChange={e => this.setState({ search: e.target.value })}
+                                placeholder="Search..."
+                                autoFocus
+                                style={{ fontSize: 'inherit' }}
+                                inputProps={{ style: { width: '100%' } }}
+                            />
                         </Typography>
                     </form>
                 }
