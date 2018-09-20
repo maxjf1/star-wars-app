@@ -2,5 +2,13 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Roboto", sans-serif;
-  color: rgba(0, 0, 0, 0.87);
+  /* color: rgba(0, 0, 0, 0.87); */
+  background-color: #303030;
+  color: #fff;
+}
+
+dt {
+  float: left;
+  min-width: 100px;
+  font-weight: bold;
 }
