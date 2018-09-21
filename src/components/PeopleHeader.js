@@ -25,27 +25,32 @@ class PeopleHeader extends Component {
     toggleSearch = () => this.setState({ searchOpen: !this.state.searchOpen })
 
     render() {
+        const { search, searchOpen } = this.state
         return (
-            <Header title={this.state.search || 'People'} color={this.state.searchOpen ? 'default' : 'primary'} style={{ transition: 'all 200ms ease-out' }}
+            <Header
+                title={search ? <div onClick={this.toggleSearch}>{search}</div> : 'People'}
+                color={searchOpen ? 'default' : 'primary'}
+                style={{ transition: 'all 200ms ease-out' }}
                 centerAction={
-                    this.state.searchOpen &&
+                    searchOpen &&
                     <form onSubmit={this.handleSearch}>
-                        <Typography variant="title" color="inherit">
+                        <Typography variant="title" color="inherit" component="label" >
                             <InputBase
+                                id="search"
                                 name="search"
                                 type="search"
-                                value={this.state.search}
+                                value={search}
                                 onChange={e => this.setState({ search: e.target.value })}
                                 placeholder="Search..."
                                 autoFocus
-                                style={{ fontSize: 'inherit' }}
+                                style={{ fontSize: 'inherit', width: '100%' }}
                                 inputProps={{ style: { width: '100%' } }}
                             />
                         </Typography>
                     </form>
                 }
                 rightAction={
-                    this.state.searchOpen ?
+                    searchOpen ?
                         <Fragment>
                             <IconButton color="inherit" aria-label="Clear Search" onClick={this.clearSearch} >
                                 <CacelIcon />

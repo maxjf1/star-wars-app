@@ -3,6 +3,8 @@ import { apiUrl } from '../../settings';
 import PeopleHeader from '../PeopleHeader';
 import PeopleFilter from '../PeopleFilter';
 import PeopleList from '../PeopleList';
+import { Typography } from '@material-ui/core';
+import NotFound from '../NotFound';
 
 class People extends Component {
     constructor(props) {
@@ -82,13 +84,21 @@ class People extends Component {
 
     render() {
         const { hasNextPage, loading, filter, filterOpen } = this.state
+        const items = this.getFilteredList()
         return (
             <Fragment>
                 <PeopleHeader onSearch={this.handleSearch} onFilterOpen={this.toggleFilter} onNextPage={this.handleNextPage} />
                 <main>
+                    {!items.length && !loading &&
+                        <NotFound title="No match found. Try to change the filter and the search terms.">
+                            {hasNextPage && !loading &&
+                                <Typography variant="subheading" align="center">You can also...</Typography>
+                            }
+                        </NotFound>
+                    }
                     <PeopleList
                         loading={loading}
-                        items={this.getFilteredList()}
+                        items={items}
                         nextPageButton={hasNextPage && !loading}
                         onNextPage={this.handleNextPage}
                     />

@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import Header from '../../Header';
 import { apiUrl } from '../../../settings';
-import { Typography } from '@material-ui/core';
 import Loader from '../../Loader';
-import MoviesCard from '../PeopleSingle/MoviesCard';
-import ResidentPeopleCard from './ResidentPeopleCard';
-
+import PeopleCard from '../../PeopleCard';
+import PlanetSingleCard from './PlanetSingleCard'
+import MoviesCard from '../../MoviesCard';
+import NotFound from '../../NotFound';
 
 class PlanetSingle extends Component {
     constructor(props) {
@@ -57,19 +57,23 @@ class PlanetSingle extends Component {
         const { loading, planet, people, movies } = this.state
         return (
             <Fragment>
-                <Header title="People" backButton />
+                <Header title="Planets" backButton />
                 <main style={{ maxWidth: 900, margin: '0 auto' }}>
 
+                    {planet && <PlanetSingleCard planet={planet} />}
+
                     {movies && Boolean(movies.length) && <MoviesCard movies={movies} />}
-                    {people && Boolean(people.length) && <ResidentPeopleCard people={people} />}
+
+                    {people && Boolean(people.length) && <PeopleCard
+                        people={people}
+                        title="Resident People"
+                        description="People that live on this planet."
+                    />}
 
                     {loading && <Loader />}
                 </main>
-                {!people && !loading &&
-                    <Fragment>
-                        <Typography variant="display1" align="center">It's a trap!</Typography>
-                        <Typography variant="subheading" align="center">No planet found with this ID.</Typography>
-                    </Fragment>
+                {!planet && !loading &&
+                    <NotFound title="No planet found with this ID." />
                 }
             </Fragment>
         );

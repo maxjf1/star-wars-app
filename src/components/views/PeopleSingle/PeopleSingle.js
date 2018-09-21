@@ -1,14 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import Header from '../../Header';
 import { apiUrl } from '../../../settings';
-import { Typography } from '@material-ui/core';
 import Loader from '../../Loader';
-import MoviesCard from './MoviesCard';
+import MoviesCard from '../../MoviesCard';
 import PeopleSingleCard from './PeopleSingleCard';
-import StarshipsCard from './StarshipsCard';
-import SpeciesCard from './SpeciesCard';
-import VehiclesCard from './VehiclesCard';
-import HomeworldCard from './HomeworldCard';
+import SpeciesCard from '../../SpeciesCard';
+import VehiclesCard from '../../VehiclesCard';
+import PlanetsCard from '../../PlanetsCard';
+import NotFound from '../../NotFound';
+import StarshipsCard from '../../StarshipsCard';
 
 class PeopleSingle extends Component {
     constructor(props) {
@@ -33,7 +33,6 @@ class PeopleSingle extends Component {
             .then(this.getSpecies)
             .then(this.getStarships)
             .then(this.getVehicles)
-            .then(() => console.log(this.state))
             .then(() => this.setState({ loading: false }))
             .catch(error => console.error(error) || this.setState({ loading: false }))
     }
@@ -93,23 +92,22 @@ class PeopleSingle extends Component {
                 <main style={{ maxWidth: 900, margin: '0 auto' }}>
                     {people && <PeopleSingleCard people={people} />}
 
-                    {homeworld && <HomeworldCard homeworld={homeworld} />}
+                    {homeworld && <PlanetsCard planet={homeworld}
+                        title="Homeworld"
+                        description="Planet that this person was born on or inhabits." />}
 
                     {movies && Boolean(movies.length) && <MoviesCard movies={movies} />}
 
-                    {species && Boolean(species.length) && <SpeciesCard species={species} />}
+                    {species && Boolean(species.length) && <SpeciesCard species={species} description="Species that this person belongs to" />}
 
-                    {starships && Boolean(starships.length) && <StarshipsCard starships={starships} />}
+                    {starships && Boolean(starships.length) && <StarshipsCard starships={starships} description="Piloted starships" />}
 
-                    {vehicles && Boolean(vehicles.length) && <VehiclesCard vehicles={vehicles} />}
+                    {vehicles && Boolean(vehicles.length) && <VehiclesCard vehicles={vehicles} description="Vehicles that this person has piloted" />}
 
                     {loading && <Loader />}
                 </main>
                 {!people && !loading &&
-                    <Fragment>
-                        <Typography variant="display1" align="center">It's a trap!</Typography>
-                        <Typography variant="subheading" align="center">No people found with this ID.</Typography>
-                    </Fragment>
+                    <NotFound title="No people found with this ID." />
                 }
             </Fragment>
         );

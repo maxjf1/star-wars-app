@@ -1,14 +1,14 @@
 import React from 'react';
 import { Typography, Card, CardContent, Grow } from '@material-ui/core';
-import PeopleList from '../../PeopleList';
+import PeopleList from './PeopleList';
 
-const ResidentPeopleCard = ({ people }) => {
+const PeopleCard = ({ people, title = 'People', description = 'Featured People' }) => {
     return (
         <Grow in>
             <Card style={{ margin: 10 }} >
                 <CardContent>
-                    <Typography variant="headline" component="h2">Resident People</Typography>
-                    <Typography color="textSecondary" >People that live on this planet.</Typography>
+                    <Typography variant="headline" component="h2">{title}</Typography>
+                    <Typography color="textSecondary" >{description}</Typography>
                 </CardContent>
                 <PeopleList items={people} divider />
             </Card>
@@ -16,4 +16,4 @@ const ResidentPeopleCard = ({ people }) => {
     );
 };
 
-export default ResidentPeopleCard;
+export default PeopleCard;

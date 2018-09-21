@@ -1,26 +1,27 @@
 import React, { Fragment } from 'react';
-import { Typography, Card, CardContent, Grow, List, ListItem, ListItemText, Divider, Avatar, ListItemAvatar } from '@material-ui/core';
-import { getId, getInitials } from '../../../Utils';
+import { Typography, Card, CardContent, Grow, List, ListItem, ListItemText, Divider, ListItemAvatar, Avatar } from '@material-ui/core';
+import { getId, getInitials } from '../Utils';
 
-const StarshipsCard = ({ starships }) => {
+const VehiclesCard = ({ vehicles, description = 'Featured vehicles' }) => {
     return (
         <Grow in>
             <Card style={{ margin: 10 }} >
                 <CardContent>
-                    <Typography variant="headline" component="h2">Starships</Typography>
-                    <Typography color="textSecondary" >Piloted starships</Typography>
+                    <Typography variant="headline" component="h2">Vehicles</Typography>
+                    <Typography color="textSecondary" >{description}</Typography>
                 </CardContent>
                 <List disablePadding>
-                    {starships.map(({ url, name, starship_class, model }) => {
+                    {vehicles.map(({ url, name, model, vehicle_class }) => {
                         return (
                             <Fragment key={getId(url)}>
                                 <Divider />
                                 <ListItem button >
                                     <ListItemAvatar>
                                         <Avatar>{getInitials(name)}</Avatar>
-                                    </ListItemAvatar>                                                    <ListItemText
+                                    </ListItemAvatar>
+                                    <ListItemText
                                         primary={name}
-                                        secondary={`${starship_class}, model ${model}`} />
+                                        secondary={`${vehicle_class}, model ${model}`} />
                                 </ListItem>
                             </Fragment>
                         )
@@ -31,4 +32,4 @@ const StarshipsCard = ({ starships }) => {
     );
 };
 
-export default StarshipsCard;
+export default VehiclesCard;
