@@ -14,7 +14,7 @@ const PeopleFilter = ({ filters = {}, open, onClose, onChange }) => {
         <Drawer anchor="right" open={open} onClose={onClose}>
             <div style={{ width: 380, maxWidth: '100vw' }} >
                 <Header title="Filter" rightAction={
-                    <IconButton>
+                    <IconButton onClick={onClose}>
                         <Close />
                     </IconButton>
                 } />
