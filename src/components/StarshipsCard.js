@@ -15,7 +15,7 @@ const StarshipsCard = ({ starships, description = 'Featured starships' }) => {
                         return (
                             <Fragment key={getId(url)}>
                                 <Divider />
-                                <ListItem button >
+                                <ListItem  >
                                     <ListItemAvatar>
                                         <Avatar>{getInitials(name)}</Avatar>
                                     </ListItemAvatar>                                                    <ListItemText

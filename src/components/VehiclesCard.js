@@ -15,7 +15,7 @@ const VehiclesCard = ({ vehicles, description = 'Featured vehicles' }) => {
                         return (
                             <Fragment key={getId(url)}>
                                 <Divider />
-                                <ListItem button >
+                                <ListItem  >
                                     <ListItemAvatar>
                                         <Avatar>{getInitials(name)}</Avatar>
                                     </ListItemAvatar>

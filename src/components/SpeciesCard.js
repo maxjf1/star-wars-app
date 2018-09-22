@@ -15,7 +15,7 @@ const SpeciesCard = ({ species, description = 'Featured species' }) => {
                         return (
                             <Fragment key={getId(url)}>
                                 <Divider />
-                                <ListItem button >
+                                <ListItem >
                                     <ListItemText
                                         primary={name}
                                         secondary={`${classification}, ${designation}`} />
