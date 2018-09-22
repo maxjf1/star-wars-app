@@ -1,5 +1,7 @@
 import React from 'react';
-import { Typography, Drawer, TextField, MenuItem, List, ListItem, Toolbar, InputAdornment, AppBar } from '@material-ui/core';
+import { Drawer, TextField, MenuItem, List, ListItem, InputAdornment, IconButton } from '@material-ui/core';
+import { Close } from '@material-ui/icons'
+import Header from './Header'
 
 const defaultFilters = {
     gender: ['male', 'female', 'n/a'],
@@ -10,12 +12,12 @@ const defaultFilters = {
 const PeopleFilter = ({ filters = {}, open, onClose, onChange }) => {
     return (
         <Drawer anchor="right" open={open} onClose={onClose}>
-            <div style={{ width: 320, maxWidth: '100vw' }} >
-                <AppBar position="static">
-                    <Toolbar>
-                        <Typography variant="title" color="inherit">Filter</Typography>
-                    </Toolbar>
-                </AppBar>
+            <div style={{ width: 380, maxWidth: '100vw' }} >
+                <Header title="Filter" rightAction={
+                    <IconButton>
+                        <Close />
+                    </IconButton>
+                } />
                 <List disablePadding>
                     {Object.keys(defaultFilters).map(filter =>
                         <ListItem key={filter}>

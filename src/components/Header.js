@@ -19,7 +19,7 @@ const styles = {
 }
 
 class Header extends Component {
-
+    
     goBack = () => window.history.back()
 
     render() {
